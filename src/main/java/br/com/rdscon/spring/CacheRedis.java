@@ -13,12 +13,15 @@ public class CacheRedis {
 
     @RequestMapping("/spring-boot-test")
     public String home() {
-    		Jedis jedis = new Jedis("54.94.184.30", 55);
-    		jedis.set("foo", "bar");
-    		
-    		jedis.close();
-    		
-        return "Hello World!";
+    	
+  		Jedis jedis = new Jedis("54.94.184.30", 6379);
+  		jedis.set("key", "1231231");
+  		
+  		String retorno = "Value from Redis -> " + jedis.get("key");
+  		
+  		jedis.close();
+  		
+      return retorno;
     }
 
     public static void main(String[] args) throws Exception {

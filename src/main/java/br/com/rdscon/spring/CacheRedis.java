@@ -9,23 +9,20 @@ import redis.clients.jedis.Jedis;
 
 @RestController
 @EnableAutoConfiguration
-public class RestTest {
+public class CacheRedis {
 
     @RequestMapping("/spring-boot-test")
     public String home() {
-    	
-    		Jedis jedis = new Jedis("54.94.184.30", 6379);
-    		jedis.set("key", "1231231");
-    		
-    		String retorno = "Value from Redis -> " + jedis.get("key");
+    		Jedis jedis = new Jedis("54.94.184.30", 55);
+    		jedis.set("foo", "bar");
     		
     		jedis.close();
     		
-        return retorno;
+        return "Hello World!";
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(RestTest.class, args);
+        SpringApplication.run(CacheRedis.class, args);
     }
 
 }
